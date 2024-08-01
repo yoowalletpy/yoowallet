@@ -1,0 +1,93 @@
+site_name: YooWallet SDK
+
+nav:
+    - English:
+      - Home: index.md
+      - Installation: installation.md
+      - Authorization: authorization.md
+      - Quick Start: quickstart.md
+      - YooWallet Development: development.md
+      - API reference: api_reference.md
+    - Русский:
+      - Главная: ru/index.md
+      - Установка: ru/installation.md
+      - Авторизация: ru/authorization.md
+      - Быстрый старт: ru/quickstart.md
+      - Разработка YooWallet: ru/development.md
+      - API reference: api_reference.md
+
+theme:
+    name: "material"
+    language: en
+    palette:
+        - scheme: slate
+          primary: red
+          accent: lime
+          toggle:
+            icon: material/lightbulb
+            name: Switch to light mode
+
+        - scheme: default
+          primary: red
+          accent: lime
+          toggle:
+            icon: material/lightbulb-outline
+            name: Switch to dark mode
+    features:
+        - content.code.copy
+        - navigation.tracking
+        - navigation.footer
+        - navigation.path
+        - navigation.prune
+        - toc.follow
+        - toc.integrate
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - admonition
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.emoji:
+        emoji_index: !!python/name:material.extensions.emoji.twemoji 
+        emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - def_list
+  - pymdownx.tasklist:
+        custom_checkbox: true
+  - attr_list
+  - tables
+        
+plugins:
+- search
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        selection:
+          docstring_style: google
+- autorefs
+- privacy
+- offline
+
+extra:
+  alternate:
+         - name: English
+           link: /
+           lang: en
+         - name: Русский
+           link: /ru/
+           lang: ru 
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/yoowalletpy/yoowallet
+    - icon: fontawesome/brands/youtube
+      link: https://youtube.com/@dilet4nt765
