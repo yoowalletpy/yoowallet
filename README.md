@@ -1,19 +1,23 @@
 # YooWallet
-**Simple asynchronous/syncronous python SDK for Yoomoney Wallet and Fundraising (deals with Quickpay) APIs**
-> This SDK is unofficial!
+Это простой SDK для работы с API Юмани кошелька и сбора средств на Python.
 
-### !!! IN DEVELOPMENT !!!
-> There are a lot of issues, so use at your own risk! 
+## Предупреждение
+> Данный SDK не является официальным и находится в разработке, поставляется как есть, используйте на свой страх и риск!
 
-### Installation
+### Установка
 ```bash
-# The simplest way:
+# через PyPI
 pip install yoowallet
-```
-Go to [docs](#docs) to get more info
 
-### Usage
-Let's get account info:
+# из исходного кода
+git clone <repo>
+cd yoowallet
+pip install .
+```
+Вся информация о получении токена и работе с SDK - в [документациии](https://yoowalletpy.github.io) проекта!
+
+### Использование
+Получим информацию об аккаунте:
 ```python
 import asyncio
 from yoowallet import App
@@ -22,19 +26,19 @@ from yoowallet.types import AccountInfo
 async def main(): 
     app: App = App("TOKEN")
     if not await app.connect():
-        raise ValueError("Token is invalid!")
+        raise ValueError("Токен некорректен!")
     app_info: AccountInfo = await app.account_info()
     app_info.debug()
     
 if __name__ == "__main__":
     asyncio.run(main())
 ```
-There are way more other functions - go to [docs](#docs)
+О всех функциях и возможностях написано в [документации](https://yoowalletpy.github.io)
 
-### Docs
-You can access YooWallet documentation here: https://yoowalletpy.github.io
+### Документация
+Вы можете ознакомиться с доументацией YooWallet по ссылке: https://yoowalletpy.github.io
 
-### Sources
-- Inspired by: https://github.com/AlekseyKorshuk/yoomoney-api
-- Yoomoney Wallet API: https://yoomoney.ru/docs/wallet
-- Yoomoney Fundrising API: https://yoomoney.ru/docs/payment-buttons
+### Источники
+- Вдохновлён проектом: https://github.com/AlekseyKorshuk/yoomoney-api
+- API Юмани кошелька: https://yoomoney.ru/docs/wallet
+- API Юмани сбора средств: https://yoomoney.ru/docs/payment-buttons

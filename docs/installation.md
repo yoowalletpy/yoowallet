@@ -1,37 +1,37 @@
-# Installation
-There are two ways of installation:
+# Установка
+Существует два способа установки:
 
-- [via PyPI](#via-pypi)
-- [from source](#from-source)
+- [Через PyPI](#pypi)
+- [Из исходного кода](#_2)
 
-!!! tip inline end "Python virtual environment"
+!!! tip inline end "Виртуальное окружение Python"
 
-	Installation and usage must be performed
-	in virtual environment:
+	Установка и работа должна проводиться
+	в виртуальном окружении:
     ```bash
     python -m venv .venv
     source .venv/bin/activate
     ```
 
-## :simple-pypi: Via PyPI
-You can simply install SDK via PyPI:
+## :simple-pypi: Через PyPI
+Вы просто можете установить SDK через PyPI:
 ```bash
-# Basic
+# Базовый
 pip install yoowallet
 
-# With synchronous API support
+# С поддержкой синхронного API
 pip install yoowallet[sync]
 
-# With packages for developing
+# С пакетами для рзработки
 pip install yoowallet[dev]
 ```
 
-## :fontawesome-brands-square-git: From source
-Getting SDK from source is also an option:
+## :fontawesome-brands-square-git: Из исходного кода
+Также установка SDK возможна из исходного кода:
 ```bash
 git clone <repo>
 cd yoowallet
 pip install .
 ```
 
-Now it's time to [create an application](authorization.md) :simple-authy:
+Теперь самое время [создать приложение](authorization.md) :simple-authy:

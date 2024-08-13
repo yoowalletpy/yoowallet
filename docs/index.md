@@ -1,33 +1,33 @@
-# YooWallet SDK
-This is simple python SDK for Yoomoney Wallet and Fundraising (deals with Quickpay) APIs.
-## :warning: Notice
-> This SDK is not official and in development, software comes as is, use at your own risk!
-## :fontawesome-solid-list: Features
-- Support both async and sync usage
-- Utils for authorizing Yoomoney apps (only async now)
-- Getting account information, operation history, it's detailes
-- Fundraising (QuickPay)
-- HTTP notification server (raw and without TLS support yet, DO NOT USE IT NOW!)
+# YooWallet
+Это простой SDK для работы с API Юмани кошелька и сбора средств на Python :simple-python:.
+## :warning: Предупреждение
+> Данный SDK не является официальным и находится в разработке, поставляется как есть, используйте на свой страх и риск!
+## :fontawesome-solid-list: Особенности
+- Поддержка асинхронного/синхронного использования
+- Утилиты для авторизации приложения Юмани (пока только асинхронные)
+- Получение информации об аккаунте, списка операций, их деталей
+- Выставление счетов для оплаты (QuickPay)
+- Сервер для приёма HTTP уведомлений (сырой и пока без поддержки TLS, СЕЙЧАС НЕ ИСПОЛЬЗУЙТЕ!)
 
-## :fontawesome-regular-rectangle-list: List of Implemented
-- [x] Authorization
-- [x] Revoking app token
-- [x] Getting account info
-- [x] Operation history
-- [x] Operation details
-- [ ] Perform payment
-- [ ] Process payment
+## :fontawesome-regular-rectangle-list: Список реализованного
+- [x] Авторизация
+- [x] Отозвание токена приложения
+- [x] Информация об аккаунте
+- [x] История операций
+- [x] Детали операций
+- [ ] Выполнение платежа
+- [ ] Обработка платежа
 - [x] QuickPay
-- [x] HTTP notifications (partially)
-    - [x] Raw realization
-    - [ ] TLS support
+- [x] HTTP уведомления
+    - [x] Сырая реализация
+    - [ ] Поддержка TLS
 
-## :information_source: Sources
-- Inspired by: <https://github.com/AlekseyKorshuk/yoomoney-api>
-- Yoomoney Wallet API: <https://yoomoney.ru/docs/wallet>
-- Yoomoney Fundrising API: <https://yoomoney.ru/docs/payment-buttons>
+## :information_source: Источники
+- Вдохновлён проектом: <https://github.com/AlekseyKorshuk/yoomoney-api>
+- API Юмани кошелька: <https://yoomoney.ru/docs/wallet>
+- API Юмани сбора средств: <https://yoomoney.ru/docs/payment-buttons>
 
-!!! question "Have some questions?"
-    Join developers [telegram channel](https://t.me/yoowallet_python) :simple-telegram: (here you can ask some questions :question:)
+!!! question "Появились вопросы?"
+    Присоединяйтесь к [телеграм каналу](https://t.me/yoowallet_python) с разработчиками :simple-telegram: (здесь вы можете задавать вопросы :question:)
 
-Follow [installation guide](installation.md) to start working with YooWallet.
+Следуйте [гайду по установке](installation.md), чтобы начать использовать YooWallet.

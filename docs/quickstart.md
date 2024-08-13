@@ -1,19 +1,19 @@
-# Quick Start
+# Быстрый старт 
 
-Here will be provided several examples on YooWallet usage.
+Здесь будут приведены некоторые примеры использования YooWallet
 
-!!! info "Examples"
+!!! info "Примеры"
     
-    All usage examples are available in ==tests/== dir
-    in the root of the project
+    Все примеры использования доступны в папке ==tests/==
+    в корне проекта
 
-- [Getting account info](#getting-account-info)
-- [Getting operation history](#getting-operation-history)
+- [Получение информации об аккаунте](#_2)
+- [Получение истории операций](#_3)
 - [QuickPay](#quickpay)
 - [Sync API](#sync-api)
-- [HTTP notifications](#http-notification-server)
+- [HTTP уведомления](#http)
 
-### Getting account info
+### Информация об аккаунте
 ```python
 import asyncio
 from yoowallet import App
@@ -22,7 +22,7 @@ from yoowallet.types import AccountInfo
 async def main(): 
     app: App = App("TOKEN")
     if not await app.connect():
-        raise ValueError("Token is invalid!")
+        raise ValueError("Токен некорректен!")
     app_info: AccountInfo = await app.account_info()
     app_info.debug()
     
@@ -30,11 +30,11 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### Getting operation history
+### История операций
 
-!!! tip inline end "More info"
-    Go to API Reference to get the complete
-    information about parameters
+!!! tip inline end "Больше информации"
+    Обратитесь к API Reference чтобы получить
+    всю информацию о параметрах
 
 ```python
 import asyncio
@@ -44,18 +44,18 @@ from yoowallet.types import OperationHistory
 async def main(): 
     app: App = App("TOKEN")
     if not await app.connect():
-        raise ValueError("Token is invalid!")
-    # Operation history without filters
+        raise ValueError("Токен некорректен!")
+    # История операций без фильтров
     history: OperationHistory = await app.operation_history()
-    print("[*] The entire operation history:")
+    print("[*] Полная история операций:")
     history.debug()
 
-    # Operation history for the last hour
+    # История операций за последний час
     from datetime import datetime
     date = datetime.now()
     date = date.replace(hour = date.hour - 1)
     history: OperationHistory = await app.operation_history(from_time = date)
-    print("[*] Operation history for he last hour:")
+    print("[*] История операций за последний час:")
     history.debug()
     
 if __name__ == "__main__":
@@ -64,12 +64,12 @@ if __name__ == "__main__":
 
 ### QuickPay
 
-!!! tip "About QuickPay"
-    QuickPay is used to receive donates
-    via link. You can set ==label== for such link
-    and verify it's status in operation history
+!!! tip "QuickPay"
+    QuickPay используется для получения донатов
+    по ссылке. Вы можете задать ==label== для таких ссылок
+    и проверить их статус в истории операций
 
-You can generate link for fundraising:
+Вы можете сгенерировать ссылку для сбора денег::
 ```python
 import asyncio
 from yoowallet import App
@@ -77,17 +77,17 @@ from yoowallet import App
 async def main(): 
     app: App = App("TOKEN")
     if not await app.connect():
-        raise ValueError("Token is invalid!")
-    # Set label to get it in operation history
-    payment = await app.quickpay(2.0, label = "some_random_unique_id")
-    print(f"[*] Payment link: {payment['url']} ({payment['amount_due']} RUB will be received)")
+        raise ValueError("Токен некорректен!")
+    # Устанавливаем label для нахождения в истории операций
+    payment = await app.quickpay(2.0, label = "какой_нибудь_уникальный_id")
+    print(f"[*] Ссылка для оплаты: {payment['url']} ({payment['amount_due']} руб. будет получено)")
     
 if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-By the way, there is an App method for easily
-receiving QuickPay status from operation history:
+Кстати, в App существует метод для простого
+получения статуса QuickPay из истории операций:
 ```python
 import asyncio
 from yoowallet import App
@@ -95,24 +95,23 @@ from yoowallet import App
 async def main(): 
     app: App = App("TOKEN")
     if not await app.connect():
-        raise ValueError("Token is invalid!")
-    if await app.get_by_label("your label"):
-        print("[*] Payment was successfully received")
+        raise ValueError("Токен некорректен!")
+    if await app.get_by_label("ваш label"):
+        print("[*] Оплата успешно прошла!")
     
 if __name__ == "__main__":
     asyncio.run(main())
 ```
 
 ### Sync API
-For some reason you may need for
-synchronously using Yoowallet, so there is
-support for Sync API. App from Sync API has the
-same methods as the async one:
+По какой-то причине вам может понадобиться использовать
+Yoowallet синхронно, поэтому существует поддержка Sync API.
+Приложение из синхронного API имеет те же методы, что и асинхронное:
 
 !!! tip inline start "Sync API"
-    To use sync API - you must install
-    yoowallet in special edition.
-    Go to [installation](installation.md) for more info.
+    Чтобы использовать синхронный API - вы должны
+    установить специальный выйпуск yoowallet.
+    Последуйте [установочному гайду](installation.md) чтобы узнать больше.
 
 ```python
 from yoowallet.sync import App
@@ -120,16 +119,16 @@ from yoowallet.types import AccountInfo
 
 app: App = App("TOKEN")
 if not app.connect():
-    raise ValueError("Token is invalid!")
+    raise ValueError("Токен некорректен!")
 app.account_info().debug()
 ```
 
-### HTTP notification server
-!!! danger "WARNING"
-    Notification server has not been
-    finished yet. Due to a lack of testing
-    it may be VERY unstable. So, when server
-    is finally written - you will see usage
-    info here
-But you can still try it via example in ==tests/== dir
-**at your own risk**.
+### HTTP сервер уведомлений
+!!! danger "ВНИМАНИЕ"
+    Сервер уведомлений ещё не закончен.
+    Из-за отсутствия тестирования он может
+    быть ОЧЕНЬ нестабильным. Так, когда сервер
+    будет окончательно дописан - вы увидите информацию
+    по использованию
+Но вы сейчас можете опробовать его при помощи
+примеров в папке ==tests/== **на свой страх и риск**.

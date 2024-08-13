@@ -1,20 +1,20 @@
-site_name: YooWallet SDK
+site_name: YooWallet
 
 nav:
     - English:
-      - Home: index.md
-      - Installation: installation.md
-      - Authorization: authorization.md
-      - Quick Start: quickstart.md
-      - YooWallet Development: development.md
-      - API reference: api_reference.md
+      - Home: en/index.md
+      - Installation: en/installation.md
+      - Authorization: en/authorization.md
+      - Quick Start: en/quickstart.md
+      - YooWallet Development: en/development.md
+      - API reference: en/api_reference.md
     - Русский:
-      - Главная: ru/index.md
-      - Установка: ru/installation.md
-      - Авторизация: ru/authorization.md
-      - Быстрый старт: ru/quickstart.md
-      - Разработка YooWallet: ru/development.md
-      - API reference: api_reference.md
+      - Главная: index.md
+      - Установка: installation.md
+      - Авторизация: authorization.md
+      - Быстрый старт: quickstart.md
+      - Разработка YooWallet: development.md
+      - API reference: en/api_reference.md
 
 theme:
     name: "material"
@@ -81,10 +81,10 @@ plugins:
 extra:
   alternate:
          - name: English
-           link: /
+           link: /en/
            lang: en
          - name: Русский
-           link: /ru/
+           link: /
            lang: ru 
   social:
     - icon: fontawesome/brands/github

@@ -1,0 +1,47 @@
+name: Generate and Publish Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocstrings[python] mkdocs-material setuptools 
+
+      - name: Generate docs
+        run: mkdocs build
+
+      - name: Checkout docs repository
+        uses: actions/checkout@v2
+        with:
+          repository: yoowalletpy/yoowalletpy.github.io 
+          token: ${{ secrets.YOOWALLET_DOCS_TOKEN }}
+          path: docs-repo
+
+      - name: Copy generated docs to target repo
+        run: |
+          mv site/* docs-repo/
+
+      - name: Commit and push changes
+        run: |
+          cd docs-repo
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Auto update docs"
+          git push origin main

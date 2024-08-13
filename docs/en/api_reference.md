@@ -6,10 +6,10 @@
 
 ### Apps
 
-#### Default App (async)
+#### App
 ::: yoowallet.App
 
-#### Sync App
+#### App (sync version)
 ::: yoowallet.sync.App
 
 ### Types

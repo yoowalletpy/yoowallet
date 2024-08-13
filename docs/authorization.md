@@ -1,88 +1,88 @@
-# Authorization
-First of all, you must create Yoomoney application.
-To do it - follow the link: <https://yoomoney.ru/myservices/new>.
+# Авторизация
+Прежде всего, вы должны создать приложение в Юмани.
+Чтобы сделать это - перейдите по ссылке: <https://yoomoney.ru/myservices/new>.
 
-Fill in fields (^^don't select OAuth2!^^) and push the button.
+Заполните поля (^^не выбирайте OAuth2!^^) и нажмите на кнопку.
 
-Now you must remember client_id and redirect_url, gonna be used
-in Authorizer.
+Теперь вам нужно запомнить client_id и redirect_url, 
+которые будут использоваться в Authorizer.
 
-Before using yoowallet you must generate ==token==.
+Перед использованием yoowallet вы должны сгенерировать ==токен==.
 
-When getting token - you connect the application to your wallet and provide
-certain permissions. These permissions called ==scope==.
+Получая токен - вы подключаете приложение к своему кошельку и 
+предоставляете определённые разрешения. Эти разрешения называются ==scope==.
 
 ## :lock: Scope
-Scope must be provided to ==Authorizer== when generating token as a python list.
+Scope должен быть передан ==Authorizer== при генерации токена в виде python списка.
 
-This table describes all the supported permissions:
+Эта таблица описывает все поддерживаемые разрешения:
 
-!!! info "Source"
-	All permissions are got here:
+!!! info "Источник"
+	Все разрешения взяты отсюда:
 	<https://yoomoney.ru/docs/wallet/using-api/authorization/protocol-rights>
 
-| Permission        | Description                                                 |
-|-------------------|-------------------------------------------------------------|
-| account-info      | Getting account info                                        |
-| operation-history | Getting operation history                                   |
-| operation-details | Getting details about operation                             |
-| payment           | Ability to pay in shops and transfer money to other wallets |
-| payment-shop      | Ability to buy in registered shops                          |
-| payment-p2p       | Ability to transfer money to other wallets                  |
+| Разрешение        | Описание                                                            |
+|-------------------|---------------------------------------------------------------------|
+| account-info      | Получение информации об аккаунте                                    |
+| operation-history | Получение истории операций                                          |
+| operation-details | Получение подробностей об операциях                                 |
+| payment           | Возможность платить в магазинах и переводить деньги на другие счета |
+| payment-shop      | Возможность покупать в зарегистрированных магазинах                 |
+| payment-p2p       | Возможность переводить деньги на другой кошелёк                     |
 
-!!! warning "Other permissions"
-	Permissions, which have not been metioned
-	are not supported (they may work, but ^^do not have to^^)
+!!! warning "Другие разрешения"
+	Разрешения, которые не были упомянуты -
+	не поддерживаются (они могут работать, но ^^не обязаны^^)
 
-## :key: Token
-Now you are ready to generate token.
+## :key: Токен
+Теперь вы готовы к генерации токена.
 
-The following code snippet will help you:
+Следующий отрывок кода вам поможет:
 ```python
 import asyncio
 from yoowallet import App
 from yoowallet.utils import Authorizer
 from yoowallet.types import AccountInfo
 
-CLIENT_ID = "your client_id here"
-REDIRECT_URI = "your redirect_uri here"
+CLIENT_ID = "ваш client_id"
+REDIRECT_URI = "ваш redirect_uri"
 
 async def main():
-	# Creating token
-	# Provide scope, if you need nore abilities,
-	# default is ['account-info']
+	# Создание токена
+	# Предоставьте scope, если вам нужно больше возможностей
+	# стандартное значение - ['account-info']
     auth = Authorizer(
     	CLIENT_ID,
     	REDIRECT_URI
     )
     print(await auth.generate_code_url())
-    code = input("Enter code: ")
-    print("Your token is:")
+    code = input("Введите код: ")
+    print("Ваш токен:")
     print(await auth.get_token(code))
-    # Testing
+    # Проверка
     app: App = App(auth.token)
     if not await app.connect():
-        raise ValueError("Token is invalid!")
-    print("App is ready!")
+        raise ValueError("Токен некорректен!")
+    print("Приложение готово!")
 
 if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-## :fontawesome-solid-ban: Revoking token
-If you generated token with wrong scope or it became useless, 
-than the best way is to ==revoke== it.
+## :fontawesome-solid-ban: Отозвание токена
+Если вы сгенерировали токен с неправильным scope или он стал бесполезным,
+то лучший выход - ==отозвать== его.
 
-Perform it using this code:
+Проделать это можно при помощи данного кода:
 ```python
 import asyncio
 from yoowallet.utils import revoke_token
 
-TOKEN = "your token here"
+TOKEN = "ваш токен"
 
 async def main():
     if await revoke_token(TOKEN):
-        print("Token is revoked!")
+        print("Токен отозван!")
 
 if __name__ == "__main__":
     asyncio.run(main()
