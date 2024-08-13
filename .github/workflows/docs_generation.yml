@@ -35,6 +35,7 @@ jobs:
 
       - name: Copy generated docs to target repo
         run: |
+          rm -rf docs-repo/*
           mv site/* docs-repo/
 
       - name: Commit and push changes
