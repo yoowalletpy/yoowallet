@@ -94,7 +94,6 @@ class App:
         from yoowallet.sync import App
         from yoowallet.types import OperationHistory
     
-        # ! Provide scope if you want not just get account information
         app: App = App("TOKEN")
         if not app.connect():
             raise ValueError('Token is invalid!')
